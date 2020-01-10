@@ -14,6 +14,7 @@ repositories {
 
 ext {
     set('springCloudVersion', "Hoxton.SR1")
+    set('lombokVersion', '1.18.10')
 }
 
 dependencies {
@@ -24,9 +25,15 @@ dependencies {
     compile('org.apache.zookeeper:zookeeper:3.4.12') {
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
+//    compileOnly "org.projectlombok:lombok:1.18.10"
+    compileOnly("org.projectlombok:lombok:${lombokVersion}")
+    testCompileOnly("org.projectlombok:lombok:${lombokVersion}")
+    annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+    testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+
 }
 
 dependencyManagement {
